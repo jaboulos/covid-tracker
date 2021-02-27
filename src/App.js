@@ -1,11 +1,16 @@
-import { ReactComponent } from '*.svg';
 import React from 'react';
+
+// named exports
+import { Cards, Chart, CountryPicker } from './components';
+import styles from './App.module.css';
 
 class App extends React.Component {
   render() {
     return (
-      <div>
-        <h1>Hello covid</h1>
+      <div className={styles.container}>
+        <Cards />
+        <CountryPicker />
+        <Chart />
       </div>
     );
   }
