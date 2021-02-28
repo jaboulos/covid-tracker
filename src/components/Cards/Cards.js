@@ -62,12 +62,16 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
               Recovered
             </Typography>
             <Typography variant='h5'>
-              <CountUp
-                start={0}
-                end={recovered.value}
-                duration={3}
-                separator=','
-              />
+              {recovered.value !== 0 ? (
+                <CountUp
+                  start={0}
+                  end={recovered.value}
+                  duration={3}
+                  separator=','
+                />
+              ) : (
+                'NA'
+              )}
             </Typography>
             <Typography color='textSecondary'>
               {new Date(lastUpdate).toDateString()}
