@@ -4,19 +4,20 @@ import { Line, Bar } from 'react-chartjs-2';
 import { fetchDailyData } from '../../api';
 import styles from './Chart.module.css';
 
-const Chart = () => {
-  const [dailyData, setDailyData] = useState([]);
+const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
+  const [dailyData, setDailyData] = useState([]); // global data
 
   // need to make this async...@47
   useEffect(() => {
+    // fetches historic daily data
     const fetchAPI = async () => {
       setDailyData(await fetchDailyData()); // state hook
     };
 
     fetchAPI();
-  });
+  }, []); // pass empty array so that useEffect acts like componentDidMount
 
-  const lineChart =
+  const LineChart =
     // Handle async fetch data issue, until data is returned, render loading
     dailyData.length ? (
       <Line
@@ -31,7 +32,7 @@ const Chart = () => {
             },
             {
               data: dailyData.map(({ deaths }) => deaths),
-              label: 'Infected',
+              label: 'Deaths',
               borderColor: 'red',
               backgroundColor: 'rgba(255,0,0,0.5)',
               fill: true,
@@ -41,7 +42,32 @@ const Chart = () => {
       />
     ) : null;
 
-  return <div className={styles.container}>{lineChart}</div>;
+  const BarChart = confirmed ? (
+    <Bar
+      data={{
+        labels: ['Infected', 'Recovered', 'Deaths'],
+        datasets: [
+          {
+            label: 'People',
+            backgroundColor: [
+              'rgba(0, 0, 255, 0.5)',
+              'rgba(0, 255, 0, 0.5)',
+              'rgba(255, 0, 0, 0.5)',
+            ],
+            data: [confirmed.value, recovered.value, deaths.value],
+          },
+        ],
+      }}
+      options={{
+        legend: { display: false },
+        title: { display: true, text: `Current state in ${country}` },
+      }}
+    />
+  ) : null;
+
+  return (
+    <div className={styles.container}>{country ? BarChart : LineChart}</div>
+  );
 };
 
 export default Chart;
