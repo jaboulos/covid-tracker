@@ -24,7 +24,11 @@ const CardComponent = ({
         {cardTitle}
       </Typography>
       <Typography variant='h5' component='h2'>
-        <CountUp start={0} end={value} duration={2.75} separator=',' />
+        {value ? (
+          <CountUp start={0} end={value} duration={2.75} separator=',' />
+        ) : (
+          'NA'
+        )}
       </Typography>
       <Typography color='textSecondary'>
         {new Date(lastUpdate).toDateString()}
