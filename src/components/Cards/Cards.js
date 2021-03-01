@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Grid } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import CardComponent from './Card/Card';
 import styles from './Cards.module.css';
 
@@ -16,21 +16,21 @@ const Info = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
           cardTitle='Infected'
           value={confirmed.value}
           lastUpdate={lastUpdate}
-          cardSubtitle='Number of active cases from COVID-19.'
+          cardSubtitle='Total number of active COVID-19 cases.'
         />
         <CardComponent
           className={styles.recovered}
           cardTitle='Recovered'
           value={recovered.value}
           lastUpdate={lastUpdate}
-          cardSubtitle='Number of recoveries from COVID-19.'
+          cardSubtitle='Total number of recoveries from COVID-19.'
         />
         <CardComponent
           className={styles.deaths}
           cardTitle='Deaths'
           value={deaths.value}
           lastUpdate={lastUpdate}
-          cardSubtitle='Number of deaths caused by COVID-19.'
+          cardSubtitle='Total number of deaths related to COVID-19.'
         />
       </Grid>
     </div>
