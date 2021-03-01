@@ -9,12 +9,13 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
 
   // need to make this async...@47
   useEffect(() => {
+    // fetches historic daily data
     const fetchAPI = async () => {
       setDailyData(await fetchDailyData()); // state hook
     };
 
     fetchAPI();
-  });
+  }, []); // pass empty array so that useEffect acts like componentDidMount
 
   const LineChart =
     // Handle async fetch data issue, until data is returned, render loading
@@ -53,7 +54,7 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
               'rgba(0, 255, 0, 0.5)',
               'rgba(255, 0, 0, 0.5)',
             ],
-            data: [confirmed, recovered, deaths],
+            data: [confirmed.value, recovered.value, deaths.value],
           },
         ],
       }}
