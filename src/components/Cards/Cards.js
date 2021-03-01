@@ -3,7 +3,7 @@ import { Grid } from '@material-ui/core';
 import CardComponent from './Card/Card';
 import styles from './Cards.module.css';
 
-const Info = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
+const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
   if (!confirmed) {
     return 'Loading...';
   }
@@ -37,4 +37,4 @@ const Info = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
   );
 };
 
-export default Info;
+export default Cards;
