@@ -5,7 +5,6 @@ import { fetchCountries } from '../../api';
 import styles from './CountryPicker.module.css';
 
 const CountryPicker = ({ handleCountryChange }) => {
-  //1.04
   const [fetchedCountries, setFetchedCountries] = useState([]);
   // pass in 2nd argument to only call useEffect when state changes
   useEffect(() => {
@@ -16,7 +15,6 @@ const CountryPicker = ({ handleCountryChange }) => {
   }, [setFetchedCountries]);
   return (
     <FormControl className={styles.formControl}>
-      {/* 1.10 */}
       <NativeSelect
         defaultValue=''
         onChange={(e) => handleCountryChange(e.target.value)}

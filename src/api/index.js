@@ -14,22 +14,6 @@ export const fetchData = async (country) => {
       data: { confirmed, recovered, deaths, lastUpdate },
     } = await axios.get(changeableUrl);
 
-    // const modifiedData = {
-    //   confirmed: data.confirmed,
-    //   recovered: data.recovered,
-    //   deaths: data.deaths,
-    //   lastUpdate: data.lastUpdate,
-    // };
-
-    // const modifiedData = {
-    //   confirmed,
-    //   recovered,
-    //   deaths,
-    //   lastUpdate,
-    // };
-
-    // return modifiedData;
-
     return {
       confirmed,
       recovered,
@@ -59,8 +43,6 @@ export const fetchDailyData = async () => {
 
 export const fetchCountries = async () => {
   try {
-    // const response = await axios.get(`${url}/countries`);
-    // destructure
     const {
       data: { countries },
     } = await axios.get(`${url}/countries`);

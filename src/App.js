@@ -1,6 +1,5 @@
 import React from 'react';
 
-// named imports
 import { Cards, Chart, CountryPicker } from './components';
 import { fetchData } from './api';
 import coronaImage from './images/image.png';
@@ -20,8 +19,6 @@ class App extends React.Component {
   }
 
   handleCountryChange = async (country) => {
-    // first fetch data
-    // then set state
     const fetchedData = await fetchData(country);
     this.setState({ data: fetchedData, country: country });
   };
